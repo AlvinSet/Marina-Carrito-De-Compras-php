@@ -18,7 +18,7 @@ $products = $product->allProducts();
                             <ul class="text-center p">
                                 <li>Peso: <?= $product->getWeight(); ?></li>
                                 <li>$ <?= $product->getPrice(); ?></li>
-                                <li>Categoria</li>
+                                <li><?= $product->getCategory()->getCategory(); ?></li>
                             </ul>
                             <div class="d-flex justify-content-around mt-3 cont-btn">
                                 <a href="index.php?section=detail-product&id=<?= $product->getId_product(); ?>" class="btn color-btn size-btn mt-1" >Ver más</a>
