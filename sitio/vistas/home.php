@@ -57,7 +57,7 @@
     </div>
 
     <section class="d-flex info container">
-        <div class="presentation col-md-9 d-flex flex-column justify-content-center">
+        <div class="mt-4 presentation col-md-9 d-flex flex-column justify-content-center">
             <p class="p">
                 En Marina, creemos en la armonía entre la naturaleza y la salud. Nos enorgullece ser una fuente confiable de productos naturales y orgánicos, cultivados con un profundo respeto por el medio ambiente y la sostenibilidad.
             </p>

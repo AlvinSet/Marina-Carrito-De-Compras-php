@@ -7,7 +7,7 @@ $product = $product->byId($_GET['id']);
 
 ?>
 <main>
-    <div class="container">
+    <div class="container d-flex justify-content-center">
         <div class="card d-flex card-detail">
             <img src="<?= "images/products/" . $product->getImg(); ?> " class="card-img-top" alt="<?= $product->getImg_description(); ?>" srcset="">
             <div class="card-body detail-cont">

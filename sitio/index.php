@@ -43,7 +43,7 @@ function activeNavBar($nombre, $paginaActual)
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid align-items-end">
                 <a class="navbar-brand <?php echo activeNavBar('Página Principal', $paginaActual) ?>" href="index.php?section=home">
                     <img src="images/logo.png" alt="Logotipo de la tienda Marina" class="d-inline-block align-text-top logo mx-3">
