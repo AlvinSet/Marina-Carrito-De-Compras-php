@@ -208,7 +208,9 @@ ul {
         height: 100%;
     
     }
-
+    h2.title-card-product{
+        font-size: 1.3rem;
+    }
 }
 
 /* Media query para computadoras y pantallas más grandes */
@@ -263,5 +265,8 @@ ul {
         width: auto;
         height: 100%;
     
+    }
+    h2.title-card-product{
+        font-size: 1.5rem;
     }
 }

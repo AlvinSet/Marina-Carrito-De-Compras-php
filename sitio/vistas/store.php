@@ -7,13 +7,14 @@ $products = $product->allProducts();
 ?>
 <main>
     <div class="container">
+        <h1 class="title-section d-flex justify-content-center h">Productos</h1>
         <ul class="d-flex row justify-content-center">
             <?php foreach ($products as $product) : ?>
                 <li class="product">
                     <div class="card">
                         <img src="<?= "images/products/" . $product->getImg(); ?>" class="card-img-top" alt="<?= $product->getImg_description(); ?>" srcset="">
                         <div class="card-body">
-                            <h4 class="text-center h"><?= $product->getName_product(); ?></h4>
+                            <h2 class="title-card-product text-center h"><?= $product->getName_product(); ?></h2>
                             <ul class="text-center p">
                                 <li>Peso: <?= $product->getWeight(); ?></li>
                                 <li>$ <?= $product->getPrice(); ?></li>
