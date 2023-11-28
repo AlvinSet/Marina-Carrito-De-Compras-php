@@ -1,0 +1,267 @@
+/* Estilos para todos los dispositivos (estilos base) */
+
+.h {
+    font-family: 'Playfair Display', serif;
+}
+
+.slogan {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.p {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.contact-container-background {
+    background-image: url(../images/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 10vh;
+}
+
+.banner-inicio {
+    background-image: url(../images/fondo-slogan.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 30vh;
+    padding: 5vh 10vh
+}
+
+.title-section {
+    font-size: 3rem;
+}
+
+.presentation {
+    padding-right: 5vh;
+}
+
+.p-carousel {
+    text-shadow: black 0.1em 0.1em 0.2em;
+    font-size: 1.2rem;
+}
+
+.h-carousel {
+    text-shadow: black 0.1em 0.1em 0.2em;
+    font-size: 2rem;
+}
+
+footer :first-child {
+    margin: 1vw;
+}
+
+.p-footer {
+    /* background-color: #3a6637; */
+    background-color: #232043;
+    color: aliceblue;
+    width: 100%;
+    padding: 1vw;
+
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0%;
+}
+.color-btn{
+    background-color: #0c6637;
+    color: aliceblue;
+    transition: transform 0.3s;
+}
+.color-btn:hover{
+    background-color: #0c6637;
+    color: aliceblue;
+    transform: scale(1.1)
+}
+.product{width: 45vw;
+    margin: 1vw;}
+
+
+.detail-cont ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.detail-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.msg-success{
+    background-color: #108c4c;
+    padding: 5vh;
+    color: aliceblue;
+}
+
+.msg-fail{
+    background-color: #e83c3c;
+    padding: 4vh;
+    color: aliceblue;
+}
+.msg-error{
+    background-color: #e83c3c;
+    color: aliceblue;
+    padding: 2vh 2vh;
+}
+
+.title-section-admin{
+    font-size: 4rem;
+}
+.titles-admin-cont{
+    height: 10vw;
+}
+.form-help{font-size: 0.9rem;}
+
+@media only screen and (max-width: 600px) {
+
+    /* Estilos específicos para dispositivos móviles */
+    .logo-cont {
+        flex-wrap: nowrap;
+    }
+
+    .logo {
+        height: 50px;
+    }
+
+    .info {
+        flex-direction: column;
+
+    }
+
+    .card-body h4{
+        font-size: 1rem;
+    }
+    .card-body ul{
+        font-size: 0.8rem;
+    }
+    .size-btn{
+        font-size:0.8rem ;
+    }
+    .cont-btn{
+        flex-direction: column;
+    }
+    .p-detail{
+        font-size: 0.8rem;
+    }
+    .card-detail{
+        width: 75vw;
+    }
+    .img-list{
+        width: auto;
+        height: 100%;
+    
+    }
+    
+}
+
+/* Media query para tablets y dispositivos similares */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+
+    /* Estilos específicos para tablets */
+    .logo {
+        height: 60px;
+    }
+
+    .banner-inicio {
+        height: 50vh;
+        padding: 5vh 15vh
+    }
+
+    main>section>.h {
+        font-size: 5rem;
+    }
+
+    .slogan {
+        font-size: 1.7rem;
+    }
+
+    .p-image {
+        height: 50%;
+        width: auto;
+    }
+
+    .product{width: 25vw;}
+
+
+    .detail-cont ul {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    .card-detail{
+        flex-direction: row;
+    }
+
+    .card-body h4{
+        font-size: 1.2rem;
+    }
+    .card-body ul{
+        font-size: 0.9rem;
+    }
+    .size-btn{
+        font-size:0.8rem ;
+    }
+    .p-detail{
+        font-size: 0.9rem;
+    }
+    .img-list{
+        width: auto;
+        height: 100%;
+    
+    }
+
+}
+
+/* Media query para computadoras y pantallas más grandes */
+@media only screen and (min-width: 1025px) {
+
+    /* Estilos específicos para computadoras */
+    .logo {
+        height: 100px;
+    }
+
+    .banner-inicio {
+        height: 60vh;
+        padding: 5vh 15vh
+    }
+
+    .contact {
+        height: 60vh;
+        padding: 5vh 15vh;
+    }
+
+    .title-section {
+        font-size: 7rem;
+    }
+
+    .slogan {
+        font-size: 2rem;
+    }
+    .product{width:18vw;
+    margin: 1vw;
+    }
+
+    .detail-cont ul {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    .card-detail{
+        flex-direction: row;
+    }
+    .p-detail{
+        width: 80%;
+    }
+
+    .detail-cont{
+        width: 300vw;
+    }
+    .product-list{
+        width:75vw;
+        margin-top: 5vh;
+    }
+    .img-list{
+        width: auto;
+        height: 100%;
+    
+    }
+}
