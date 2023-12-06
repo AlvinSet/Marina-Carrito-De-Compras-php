@@ -52,7 +52,26 @@ class Product{
         }, $stmt->fetchAll());
     }
 
-    
+        /**
+     * @param int $id
+     * @return self|null
+     */
+    public function byId(int $id): ?self
+    {
+        $db = (new DBConexion())->getDB();
+        $query = "SELECT * FROM products
+                WHERE product_id = :id";
+        $stmt = $db->prepare($query);
+        $stmt->execute(['id' => $id]);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, self::class);
+
+        $product = $stmt->fetch();
+
+        if(!$product) return null;
+
+        return $product;
+    }
+
     //Create Product
     public function createProduct(array $data): void
     {
@@ -112,25 +131,7 @@ class Product{
         ]);
     }
 
-    /**
-     * @param int $id
-     * @return self|null
-     */
-    public function byId(int $id): ?self
-    {
-        $db = (new DBConexion())->getDB();
-        $query = "SELECT * FROM products
-                WHERE product_id = :id";
-        $stmt = $db->prepare($query);
-        $stmt->execute(['id' => $id]);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, self::class);
 
-        $product = $stmt->fetch();
-
-        if(!$product) return null;
-
-        return $product;
-    }
 
 
 
