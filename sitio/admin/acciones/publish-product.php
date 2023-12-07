@@ -91,5 +91,5 @@ if(!empty($img['tmp_name'])){
         exit;
         // $errorMessage = $e->getMessage(); // Obtiene el mensaje de error
         // echo "<p>Error: $errorMessage</p>";
-    exit;
+
     } 
