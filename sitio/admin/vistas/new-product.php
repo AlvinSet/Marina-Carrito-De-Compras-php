@@ -26,7 +26,7 @@ $categories = (new Category())->allCategories();
         <section class="d-flex flex-column justify-content-evenly align-items-center titles-admin-cont">
             <h1 class="h title-section-admin">Crear Producto</h1>
         </section>
-        <div class="container d-flex justify-content-center">
+        <div class="product-form container d-flex justify-content-center">
             <form action="acciones/publish-product.php" method="POST" enctype="multipart/form-data" class="col-md-10 row g-2 d-flex flex-row align-items-end justify-content-end">
                 <div class="col-md-5">
                     <label for="name_product">Nombre del Producto: <span class="form-help" id="help-product-name">(Debe tener al menos 3 caracteres.)</span></label>

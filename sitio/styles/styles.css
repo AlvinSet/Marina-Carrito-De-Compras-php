@@ -103,9 +103,8 @@ ul {
     padding: 2vh 2vh;
 }
 
-.title-section-admin{
-    font-size: 4rem;
-}
+
+
 .titles-admin-cont{
     height: 10vw;
 }
@@ -114,6 +113,15 @@ ul {
 @media only screen and (max-width: 600px) {
 
     /* Estilos específicos para dispositivos móviles */
+    .title-section-admin{
+        font-size: 2rem;
+        /* padding-top: 5vw; */
+        margin-top: 10vw;
+    }
+    .product-form{
+        margin-top: 10vw;
+    }
+
     .logo-cont {
         flex-wrap: nowrap;
     }
@@ -268,5 +276,8 @@ ul {
     }
     h2.title-card-product{
         font-size: 1.5rem;
+    }
+    .title-section-admin{
+        font-size: 4rem;
     }
 }
