@@ -37,7 +37,7 @@ class Product{
 
     public function allProducts(): array 
     {
-        $db = (new DBConexion())->getDB();
+        $db = DBConexion::getDB();
         $query = "SELECT * FROM products p
                 INNER JOIN categories c
                 ON c.category_id = p.category_fk
@@ -58,7 +58,7 @@ class Product{
      */
     public function byId(int $id): ?self
     {
-        $db = (new DBConexion())->getDB();
+        $db = DBConexion::getDB();
         $query = "SELECT * FROM products
                 WHERE product_id = :id";
         $stmt = $db->prepare($query);
@@ -75,7 +75,7 @@ class Product{
     //Create Product
     public function createProduct(array $data): void
     {
-        $db = (new DBConexion())->getDB();
+        $db = DBConexion::getDB();
         $query = "INSERT INTO products (category_fk, user_fk, name_product, price, weight, detail_product, img, img_description, stock)
         VALUES (:category_fk, :user_fk, :name_product, :price, :weight, :detail_product, :img, :img_description, :stock)";
         $stmt = $db -> prepare($query);
@@ -96,7 +96,7 @@ class Product{
 
     //Delete Product
     public function deleteProduct(int $id){
-        $db = (new DBConexion())->getDB();
+        $db = DBConexion::getDB();
         $query = "DELETE FROM products
                 WHERE product_id = ?";
         $stmt = $db->prepare($query);
@@ -106,7 +106,7 @@ class Product{
     //Edit Product
     public function editProduct(int $product_id, array $data):void
     {
-        $db = (new DBConexion())->getDB();
+        $db = DBConexion::getDB();
         $query = "UPDATE products
                 SET name_product  = :name_product,
             price                 = :price,

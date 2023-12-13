@@ -6,28 +6,34 @@ use PDO;
 
 class DBConexion
 {
-    private string $db_host     = "localhost";
-    private string $db_name     = "dw3_guaman_alvin";
-    private string $db_charset  = "utf8mb4";
-    private string $db_user     = "root";
-    private string $db_pass     = "";
+    private static string $db_host     = "localhost";
+    private static string $db_name     = "dw3_guaman_alvin";
+    private static string $db_charset  = "utf8mb4";
+    private static string $db_user     = "root";
+    private static string $db_pass     = "";
 
-    private PDO $db;
+    private static ?PDO $db = null;
 
-    public function __construct()
+    public static function openConnection()
     {
-        $db_dsn = "mysql:host=" . $this->db_host . ";dbname=" . $this->db_name . ";charset=" . $this->db_charset;
+        $db_dsn = "mysql:host=" . self::$db_host . ";dbname=" . self::$db_name . ";charset=" . self::$db_charset;
 
         try {
-            $this->db = new PDO($db_dsn, $this->db_user, $this->db_pass);
+            echo "Nueva instancia PDO" ;
+
+            self::$db = new PDO($db_dsn, self::$db_user, self::$db_pass);
         } catch(Exception $e) {
             echo "Error al conectar con la base de datos. Por favor, intentá de nuevo más tarde.";
             exit;
         }
     }
 
-    public function getDB(): PDO
+    public static function getDB(): PDO
     {
-        return $this->db;
+        if(self::$db === null){
+        self::openConnection();
+        }
+
+        return self::$db;
     }
 }

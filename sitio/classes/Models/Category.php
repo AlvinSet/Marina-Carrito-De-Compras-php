@@ -20,7 +20,7 @@ class Category{
      */
     public function allCategories(): array
     {
-        $db = (new DBConexion())->getDB();
+        $db = DBConexion::getDB();
         $query = "SELECT * FROM categories";
         $stmt = $db->prepare($query);
         $stmt -> execute();

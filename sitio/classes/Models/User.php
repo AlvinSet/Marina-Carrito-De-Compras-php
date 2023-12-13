@@ -15,7 +15,7 @@ class User
 
     public function byId(string $id): ?self
     {
-        $db = (new DBConexion())->getDB();
+        $db = DBConexion::getDB();
         $query = "SELECT * FROM users
         WHERE user_id = ?";
         $stmt = $db->prepare($query);
@@ -32,7 +32,7 @@ class User
 
     public function byEmail(string $email): ?self
     {
-        $db = (new DBConexion())->getDB();
+        $db = DBConexion::getDB();
         $query = "SELECT * FROM users
         WHERE email = ?";
         $stmt = $db->prepare($query);
