@@ -19,7 +19,7 @@ class Authentication
         }
 
         //password verification
-        if (!(new Encryption())->verify($password, $this->user->getPassword())) {
+        if (!Encryption::verify($password, $this->user->getPassword())) {
             return false;
         }
 
