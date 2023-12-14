@@ -19,8 +19,6 @@ class DBConexion
         $db_dsn = "mysql:host=" . self::$db_host . ";dbname=" . self::$db_name . ";charset=" . self::$db_charset;
 
         try {
-            echo "Nueva instancia PDO" ;
-
             self::$db = new PDO($db_dsn, self::$db_user, self::$db_pass);
         } catch(Exception $e) {
             echo "Error al conectar con la base de datos. Por favor, intentá de nuevo más tarde.";
