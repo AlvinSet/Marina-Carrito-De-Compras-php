@@ -43,8 +43,15 @@ $rutaConfig = $whiteList[$ruta];
 $authentication = new Authentication();
 
 $requiresAuthentication = $rutaConfig['requiresAuthentication'] ?? false;
-if ($requiresAuthentication && !$authentication -> isAuthenticated()) {
-    $_SESSION['failMessage'] = "Para acceder a esta sección se requiere iniciar sesión.";
+if (
+    $requiresAuthentication &&
+    (
+        !$authentication->isAuthenticated() ||
+        !$authentication->getUser()->isAdmin()
+
+    )
+) {
+    $_SESSION['failMessage'] = "Para acceder a esta sección se requiere iniciar sesión como Administrador.";
     header("Location: index.php?section=login-view");
     exit;
 }
@@ -85,7 +92,7 @@ function activeNavBar($nombre, $paginaActual)
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 
                     <?php
-                    if ($authentication -> isAuthenticated()) :
+                    if ($authentication->isAuthenticated() && $authentication ->getUser()->isAdmin()) :
                     ?>
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -97,7 +104,7 @@ function activeNavBar($nombre, $paginaActual)
                             <li>
                                 <form action="acciones/log-out.php" method="post">
                                     <button type="submit" class="nav-link">(
-                                    <?= $authentication->getUser()->getEmail();?>   ) Cerrar Sesión</button>
+                                        <?= $authentication->getUser()->getEmail(); ?> ) Cerrar Sesión</button>
                                 </form>
                             </li>
                         </ul>

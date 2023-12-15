@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\DB\DBConexion;
@@ -61,6 +62,12 @@ class User
 
         return $user;
     }
+
+    public function isAdmin(): bool
+    {
+        return $this->role_fk === 1;
+    }
+
 
     /**
      * Get the value of user_id

@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../bootstrap/init.php';
 
 $authentication = new Authentication();
 
-if(!$authentication -> isAuthenticated()) {
+if(!$authentication -> isAuthenticated() || !$authentication->getUser()->isAdmin()) {
     $_SESSION['failMessage'] = "Para realizar esta acción se requiere iniciar sesión.";
     header('Location: ../index.php?section=login-view');
     exit;
