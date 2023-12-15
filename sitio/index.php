@@ -9,6 +9,7 @@ $whiteList = [
     'store' => ['title' => 'Tienda'],
     'detail-product' => ['title' => 'Detalle del Producto'],
     'contact' => ['title' => 'Contacto'],
+    'sign-up-view' => ['title' => 'Crear Cuenta'],
     '404' => ['title' => 'Página no encontrada'],
 ];
 
@@ -61,6 +62,9 @@ function activeNavBar($nombre, $paginaActual)
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?php echo activeNavBar('Contacto',  $paginaActual) ?>" href="index.php?section=contact">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo activeNavBar('Crear Cuenta',  $paginaActual) ?>" href="index.php?section=sign-up-view">Crear Cuenta</a>
                         </li>
                     </ul>
                 </div>
