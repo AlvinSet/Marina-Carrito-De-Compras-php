@@ -1,16 +1,27 @@
 <?php
 
+use App\Authentication\Authentication;
+
 require_once __DIR__ . '/bootstrap/init.php';
 
 $ruta = $_GET['section'] ?? 'home';
 
 $whiteList = [
     'home' => ['title' => 'Página Principal'],
+
     'store' => ['title' => 'Tienda'],
+
     'detail-product' => ['title' => 'Detalle del Producto'],
+
     'contact' => ['title' => 'Contacto'],
+
     'sign-up-view' => ['title' => 'Crear Cuenta'],
+
     'log-in-view' => ['title' => 'Iniciar Sesión'],
+
+    'profile-view' => ['title' => 'Mi perfil', 
+    'requiresAuthentication' => 'true'],
+    
     '404' => ['title' => 'Página no encontrada'],
 ];
 
@@ -20,6 +31,14 @@ if (!isset($whiteList[$ruta])) {
 
 $rutaConfig = $whiteList[$ruta];
 
+$authentication = new Authentication();
+
+$requiresAuthentication = $rutaConfig['requiresAuthentication'] ?? false;
+if ($requiresAuthentication && !$authentication->isAuthenticated()) {
+    $_SESSION['failMessage'] = "Para acceder a esta sección se requiere iniciar sesión.";
+    header("Location: index.php?section=log-in-view");
+    exit;
+}
 
 $paginaActual = $rutaConfig['title'];
 function activeNavBar($nombre, $paginaActual)
@@ -64,12 +83,32 @@ function activeNavBar($nombre, $paginaActual)
                         <li class="nav-item">
                             <a class="nav-link <?php echo activeNavBar('Contacto',  $paginaActual) ?>" href="index.php?section=contact">Contacto</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?php echo activeNavBar('Iniciar Sesión',  $paginaActual) ?>" href="index.php?section=log-in-view">Iniciar Sesión</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?php echo activeNavBar('Crear Cuenta',  $paginaActual) ?>" href="index.php?section=sign-up-view">Crear Cuenta</a>
-                        </li>
+
+
+                        <?php
+                        if (!$authentication->isAuthenticated()) :
+                        ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo activeNavBar('Iniciar Sesión',  $paginaActual) ?>" href="index.php?section=log-in-view">Iniciar Sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo activeNavBar('Crear Cuenta',  $paginaActual) ?>" href="index.php?section=sign-up-view">Crear Cuenta</a>
+                            </li>
+                        <?php
+                        else :
+                        ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo activeNavBar('Mi Perfil',  $paginaActual) ?>" href="index.php?section=profile-view">Mi Perfil</a>
+                            </li>
+                            <li>
+                                <form action="acciones/log-out.php" method="post">
+                                    <button type="submit" class="nav-link">(
+                                        <?= $authentication->getUser()->getEmail(); ?> ) Cerrar Sesión</button>
+                                </form>
+                            </li>
+                        <?php
+                        endif;
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -98,12 +137,12 @@ function activeNavBar($nombre, $paginaActual)
     ?>
 
     <footer class="d-flex flex-column align-items-center">
-<div>
-<img src="images/logo.png" alt="logo Marina" class="logo">
-</div>
-<div class="p-footer">
-<p class="text-center">© Marina 2023. Todos los derechos reservados.</p>
-</div>
+        <div>
+            <img src="images/logo.png" alt="logo Marina" class="logo">
+        </div>
+        <div class="p-footer">
+            <p class="text-center">© Marina 2023. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
 </body>
