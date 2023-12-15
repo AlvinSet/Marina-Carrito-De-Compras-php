@@ -10,6 +10,7 @@ $whiteList = [
     'detail-product' => ['title' => 'Detalle del Producto'],
     'contact' => ['title' => 'Contacto'],
     'sign-up-view' => ['title' => 'Crear Cuenta'],
+    'log-in-view' => ['title' => 'Iniciar Sesión'],
     '404' => ['title' => 'Página no encontrada'],
 ];
 
@@ -64,6 +65,9 @@ function activeNavBar($nombre, $paginaActual)
                             <a class="nav-link <?php echo activeNavBar('Contacto',  $paginaActual) ?>" href="index.php?section=contact">Contacto</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link <?php echo activeNavBar('Iniciar Sesión',  $paginaActual) ?>" href="index.php?section=log-in-view">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link <?php echo activeNavBar('Crear Cuenta',  $paginaActual) ?>" href="index.php?section=sign-up-view">Crear Cuenta</a>
                         </li>
                     </ul>
@@ -71,6 +75,24 @@ function activeNavBar($nombre, $paginaActual)
             </div>
         </nav>
     </header>
+    <div>
+        <?php
+        if (isset($_SESSION['successMessage'])) : ?>
+            <div class="msg-success"><?= $_SESSION['successMessage']; ?></div>
+        <?php
+            unset($_SESSION['successMessage']);
+        endif;
+        ?>
+
+        <?php
+        if (isset($_SESSION['failMessage'])) : ?>
+            <div class="msg-fail"><?= $_SESSION['failMessage']; ?></div>
+        <?php
+            unset($_SESSION['failMessage']);
+        endif;
+        ?>
+    </div>
+
     <?php
     require __DIR__ . '/vistas/' . $ruta . '.php';
     ?>

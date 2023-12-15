@@ -13,6 +13,21 @@ class User
     protected string $name;
     protected string $lastname;
 
+    public function createUser(array $data): void
+    {
+        $db = DBConexion::getDB();
+        $query = "INSERT INTO users (name, lastname, email, password, role_fk)
+        VALUES (:name, :lastname, :email, :password, :role_fk)";
+        $stmt = $db->prepare($query);
+        $stmt->execute([
+            'name'      => $data['name'],
+            'lastname'  => $data['lastname'],
+            'email'     => $data['email'],
+            'password'  => $data['password'],
+            'role_fk'   => $data['role_fk'],
+        ]);
+    }
+
     public function byId(string $id): ?self
     {
         $db = DBConexion::getDB();
