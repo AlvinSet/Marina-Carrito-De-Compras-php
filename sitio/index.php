@@ -19,7 +19,10 @@ $whiteList = [
 
     'log-in-view' => ['title' => 'Iniciar Sesión'],
 
-    'profile-view' => ['title' => 'Mi perfil', 
+    'profile-view' => ['title' => 'Mi Perfil', 
+    'requiresAuthentication' => 'true'],
+
+    'cart' => ['title' => 'Mi Carrito', 
     'requiresAuthentication' => 'true'],
     
     '404' => ['title' => 'Página no encontrada'],
@@ -97,6 +100,9 @@ function activeNavBar($nombre, $paginaActual)
                         <?php
                         else :
                         ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo activeNavBar('Mi Carrito',  $paginaActual) ?>" href="index.php?section=cart">Mi Carrito</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo activeNavBar('Mi Perfil',  $paginaActual) ?>" href="index.php?section=profile-view">Mi Perfil</a>
                             </li>
