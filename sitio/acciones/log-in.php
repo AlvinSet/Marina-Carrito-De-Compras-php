@@ -12,7 +12,7 @@ $authentication = new Authentication();
 if(!$authentication->logIn($email, $password)){
     $_SESSION['oldData'] = $_POST;
     $_SESSION['failMessage'] = "Las credenciales ingresadas no coinciden con nuestros registros.";
-    header('Location: ../index.php?section=login-view');
+    header('Location: ../index.php?section=log-in-view');
     exit;
 }
 
