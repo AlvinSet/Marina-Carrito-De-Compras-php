@@ -34,12 +34,10 @@ class Cart
     public function removeFromCart($product_id)
     {
         $product_id = intval($product_id);
-        echo "ID a eliminar: " . $product_id . "<br>";
+
         
         $this->cartContents = $_SESSION['cartContents'];
-        echo "Antes de eliminar: ";
-        
-        //var_dump($this->cartContents);
+
 
         foreach ($this->cartContents as $key => $product) {
             echo "ID del producto en el carrito: " . $product->getId_product() . "<br>";
@@ -49,14 +47,20 @@ class Cart
                 break;
             }
         }
-        
-        echo "Después de eliminar: ";
-        //var_dump($this->cartContents);
-    
-        // Actualizar la sesión con los productos actualizados
+      
         $_SESSION['cartContents'] = $this->cartContents;
 
     }
 
+    public function getTotalPrice()
+    {
+        $totalPrice = 0;
+
+        foreach ($this->cartContents as $product) {
+            $totalPrice += $product->getPrice();
+        }
+
+        return $totalPrice;
+    }
     
 }

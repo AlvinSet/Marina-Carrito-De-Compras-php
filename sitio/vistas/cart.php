@@ -5,32 +5,42 @@ use App\Models\Cart;
 
 $cart = new Cart();
 $cartContents = $cart->getCartContents();
+$totalPrice = $cart->getTotalPrice();
 ?>
 
 <main class="main-content">
     <section class="container">
-        <h1 class="mb-1">Mi Carrito</h1>
+        <h1 class="mb-1 h title-section">Mi Carrito</h1>
 
         <?php if (empty($cartContents)) : ?>
             <p>¡Tu carrito está vacío!</p>
         <?php else : ?>
-            <ul>
+            <ul class="mt-5 ">
                 <?php foreach ($cartContents as $product) : ?>
 
-                    <li>
-                        <div>
-                            <h2> <?= $product->getName_product() ?></h2>
-                            <p>
-                            <?= $product->getPrice() ?>
+                    <li class="mt-2 row g-4">
+                        <div class=" d-flex justify-content-between align-items-baseline">
+
+                            <h2 class="h cart-list"> <?= $product->getName_product() ?></h2>
+                            <p class="p">
+                            Precio: $ <?= $product->getPrice() ?>
                             </p>
 
-                            <a href="acciones/delete-from-cart.php?id=<?= $product->getId_product() ?>" class="btn color-btn size-btn mt-1">Borrar Producto</a>
+                            <a href="acciones/delete-from-cart.php?id=<?= $product->getId_product() ?>" class="col-lg-1 btn color-btn size-btn mt-1"><i class="bi bi-trash3-fill"></i> Borrar</a>
                         </div>
 
                     </li>
 
                 <?php endforeach; ?>
+                <li class="mt-4">
+                    <div>
+                        <p class=" p total-price">Precio Total: $ <?=$totalPrice ?></div> </p>
+                        
+                </li>
+                
             </ul>
+
+
         <?php endif; ?>
 
     </section>

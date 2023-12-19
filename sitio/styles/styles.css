@@ -110,7 +110,11 @@ ul {
 }
 .form-help{font-size: 0.9rem;}
 
+
+
 @media only screen and (max-width: 600px) {
+
+    
 
     /* Estilos específicos para dispositivos móviles */
     .title-section-admin{
@@ -158,7 +162,8 @@ ul {
         height: 100%;
     
     }
-    
+    .total-price{font-size: 1.4rem;}
+    .cart-list{font-size: 1.5rem;}
 }
 
 /* Media query para tablets y dispositivos similares */
@@ -219,6 +224,7 @@ ul {
     h2.title-card-product{
         font-size: 1.3rem;
     }
+    .total-price{font-size: 1.9rem;}
 }
 
 /* Media query para computadoras y pantallas más grandes */
@@ -280,4 +286,9 @@ ul {
     .title-section-admin{
         font-size: 4rem;
     }
+    p .total-price{
+        font-size: 2rem;
+    }
+    .total-price{font-size: 2rem;}
+
 }
