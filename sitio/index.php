@@ -1,8 +1,10 @@
 <?php
-
+use App\Models\Cart;
 use App\Authentication\Authentication;
 
 require_once __DIR__ . '/bootstrap/init.php';
+
+$cart = new Cart();
 
 $ruta = $_GET['section'] ?? 'home';
 

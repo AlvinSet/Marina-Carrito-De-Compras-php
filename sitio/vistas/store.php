@@ -21,8 +21,13 @@ $products = $product->allProducts();
                                 <li><?= $product->getCategory()->getCategory(); ?></li>
                             </ul>
                             <div class="d-flex justify-content-around mt-3 cont-btn">
-                                <a href="index.php?section=detail-product&id=<?= $product->getId_product(); ?>" class="btn color-btn size-btn mt-1" >Ver más</a>
-                                <a href="#" class="btn color-btn size-btn mt-1">Añadir</a>
+                                <a href="index.php?section=detail-product&id=<?= $product->getId_product(); ?>" class="btn color-btn size-btn mt-1">Ver más</a>
+
+                                <form action="acciones/add-to-cart.php?id=<?= $product->getId_product(); ?>" method="post">
+                                    <input type="hidden" name="name_product" value="<?= $product->getName_product(); ?>">
+                                    <button type="submit" class="btn color-btn"> Añadir </button>
+                                </form>
+
                             </div>
                         </div>
                     </div>
