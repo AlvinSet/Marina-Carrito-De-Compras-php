@@ -22,7 +22,7 @@ $totalPrice = $cart->getTotalPrice();
                         <div class=" d-flex justify-content-between align-items-baseline">
 
                             <h2 class="h cart-list"> <?= $product->getName_product() ?></h2>
-                            <p class="p">
+                            <p class="p ">
                             Precio: $ <?= $product->getPrice() ?>
                             </p>
 
@@ -33,12 +33,17 @@ $totalPrice = $cart->getTotalPrice();
 
                 <?php endforeach; ?>
                 <li class="mt-4">
-                    <div>
+                    <div class="d-flex justify-content-end">
                         <p class=" p total-price">Precio Total: $ <?=$totalPrice ?></div> </p>
-                        
                 </li>
                 
             </ul>
+            <div class="d-flex justify-content-end">
+            <form action=" " method="post">
+
+                        <button type="submit" class="btn color-btn size-btn"> <i class="bi bi-bag-fill"></i> Comprar</button>
+                    </form>
+            </div>
 
 
         <?php endif; ?>

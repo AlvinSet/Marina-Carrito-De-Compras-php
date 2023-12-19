@@ -25,7 +25,7 @@ $products = $product->allProducts();
 
                                 <form action="acciones/add-to-cart.php?id=<?= $product->getId_product(); ?>" method="post">
                                     <input type="hidden" name="name_product" value="<?= $product->getName_product(); ?>">
-                                    <button type="submit" class="btn color-btn"> Añadir </button>
+                                    <button type="submit" class="btn color-btn size-btn mt-1"> Añadir </button>
                                 </form>
 
                             </div>
