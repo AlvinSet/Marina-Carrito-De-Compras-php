@@ -31,34 +31,18 @@ class Cart
 
     public function removeFromCart($product_id)
     {
-        $index = $this->findProductIndex($product_id);
 
-        // Si se encuentra el producto, eliminarlo del carrito
-        if ($index !== false) {
-
-            echo "Antes de eliminar (antes de array_splice): ";
-        var_dump($_SESSION['cartContents']);
-
-            array_splice($this->cartContents, $index, 1);
-            $_SESSION['cartContents'] = $this->cartContents;
-
-            echo "Después de eliminar (después de array_splice): ";
-            var_dump($_SESSION['cartContents']);
+        foreach ($this->cartContents as $key => $product) {
+            if ($product->getId_product() === $product_id) {
+                unset($this->cartContents[$key]);
+                break;
+            }
         }
-        
+    
+        // Actualizar la sesión con los productos actualizados
+        $_SESSION['cartContents'] = $this->cartContents;
+
     }
 
-    protected function findProductIndex($product_id)
-{
-    // Buscar el índice del producto en el carrito
-    foreach ($this->cartContents as $index => $product) {
-        if ($product->getId_product() === $product_id) {
-            return $index;
-        }
-    }
-
-    // Si no se encuentra el producto, devolver falso
-    return false;
-}
     
 }

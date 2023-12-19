@@ -2,22 +2,18 @@
 use App\Models\Cart;
 require_once __DIR__ . '/../bootstrap/init.php';
 
-$id = $_GET['id'];
+$product_id = $_GET['id'];
 echo "ID a eliminar: " . $id;
 try {
     
     $cart = new Cart();
 
 
-    // echo "Antes de eliminar: ";
-    // var_dump($_SESSION['cartContents']);
+    if ($product_id !== null) {
+        $cart->removeFromCart($product_id);
+        $_SESSION['cartContents'] = $cart->getCartContents();
+    }
 
-    $cart->removeFromCart($id);
-
-    $_SESSION['cartContents'] = $cart->getCartContents();
-    
-    // echo "Después de eliminar: ";
-    // var_dump($_SESSION['cartContents']);
 
 
     header("Location: ../index.php?section=cart");
