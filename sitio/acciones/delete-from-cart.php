@@ -3,7 +3,7 @@ use App\Models\Cart;
 require_once __DIR__ . '/../bootstrap/init.php';
 
 $product_id = $_GET['id'];
-echo "ID a eliminar: " . $id;
+// echo "ID a eliminar: " . $product_id;
 try {
     
     $cart = new Cart();
@@ -15,8 +15,8 @@ try {
     }
 
 
-
-    header("Location: ../index.php?section=cart");
+    $_SESSION['succesMessage'] = "Se elimino el producto.";
+    // header("Location: ../index.php?section=cart");
     exit;
 } catch(\Exception $e) {
     $_SESSION['failMessage'] = "Ocurrió un error inesperado al tratar de eliminar el producto.";
