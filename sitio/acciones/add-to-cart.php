@@ -21,7 +21,7 @@ try {
     $_SESSION['cartContents'] = $cart->getCartContents();
 
     $_SESSION['successMessage'] = "El producto <b>" . $name_product . "</b> se agregó exitosamente al carrito.";
-    header("Location: ../index.php?section=cart");
+    header("Location: ../index.php?section=store");
     exit;
 } catch(\Exception $e) {
     $_SESSION['failMessage'] = "Ocurrió un error inesperado al tratar de eliminar el producto.";

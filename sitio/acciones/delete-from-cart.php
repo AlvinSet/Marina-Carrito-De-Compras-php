@@ -8,9 +8,19 @@ try {
     
     $cart = new Cart();
 
+
+    // echo "Antes de eliminar: ";
+    // var_dump($_SESSION['cartContents']);
+
     $cart->removeFromCart($id);
 
-    // header("Location: ../index.php?section=cart");
+    $_SESSION['cartContents'] = $cart->getCartContents();
+    
+    // echo "Después de eliminar: ";
+    // var_dump($_SESSION['cartContents']);
+
+
+    header("Location: ../index.php?section=cart");
     exit;
 } catch(\Exception $e) {
     $_SESSION['failMessage'] = "Ocurrió un error inesperado al tratar de eliminar el producto.";
