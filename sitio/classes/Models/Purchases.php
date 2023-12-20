@@ -28,14 +28,58 @@ class Purchases{
     }
     return $userPurchases;
 }
-public function getPurchaseDetails(int $purchaseId): array
+public function getPurchaseDetails(?int $purchaseId): array
 {
+
+    if ($purchaseId === null){
+        return []; // Retorna un array vacío si $purchaseId es null
+    }
+
     $db = DBConexion::getDB();
     $query = "SELECT * FROM purchase_details WHERE purchases_fk = :purchaseId";
     $stmt = $db->prepare($query);
     $stmt->execute(['purchaseId' => $purchaseId]);
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getAllUsersWithPurchases(): array
+{
+    $db = DBConexion::getDB();
+
+    $query = "
+        SELECT users.user_id, users.name, users.lastname, purchases.purchase_id, purchases.purchase_date, purchases.total_amount
+        FROM users
+        LEFT JOIN purchases ON users.user_id = purchases.user_fk
+    ";
+
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $users = [];
+    foreach ($result as $row) {
+        $userId = $row['user_id'];
+        $purchase = [
+            'purchase_id' => $row['purchase_id'],
+            'purchase_date' => $row['purchase_date'],
+            'total_amount' => $row['total_amount'],
+        ];
+
+        if (!isset($users[$userId])) {
+            $users[$userId] = [
+                'user_id' => $userId,
+                'name' => $row['name'],
+                'lastname' => $row['lastname'],
+                'purchases' => [$purchase],
+            ];
+        } else {
+            $users[$userId]['purchases'][] = $purchase;
+        }
+    }
+
+    return $users;
 }
 
     public function createPurchase(array $data): void

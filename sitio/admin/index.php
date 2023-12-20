@@ -11,6 +11,10 @@ $whiteList = [
         'title' => 'Tablero Principal',
         'requiresAuthentication' => 'true'
     ],
+    'user-purchases-management' => [
+        'title' => 'Usuarios Y Compras',
+        'requiresAuthentication' => 'true'
+    ],
     'new-product' => [
         'title' => 'Crear producto',
         'requiresAuthentication' => 'true'
@@ -32,6 +36,7 @@ $whiteList = [
         'title' => 'Página no encontrada',
         'requiresAuthentication' => 'true'
     ],
+    
 ];
 
 if (!isset($whiteList[$ruta])) {
@@ -96,10 +101,13 @@ function activeNavBar($nombre, $paginaActual)
                     ?>
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link <?php echo activeNavBar('Página Principal', $paginaActual) ?>" aria-current="page" href="index.php?section=home">Tablero</a>
+                                <a class="nav-link <?php echo activeNavBar('Tablero Principal', $paginaActual) ?>" aria-current="page" href="index.php?section=home">Tablero</a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link <?php echo activeNavBar('Tienda',  $paginaActual) ?>" href="index.php?section=store">Administrar Productos</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link <?php echo activeNavBar('Usuarios Y Compras',  $paginaActual) ?>" href="index.php?section=user-purchases-management">Usuarios Y Compras</a>
                             </li>
                             <li>
                                 <form action="acciones/log-out.php" method="post">
