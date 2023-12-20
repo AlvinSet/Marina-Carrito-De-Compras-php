@@ -21,12 +21,16 @@ $totalPrice = $cart->getTotalPrice();
                     <li class="mt-2 row g-4">
                         <div class=" d-flex justify-content-between align-items-baseline">
 
-                            <h2 class="h cart-list"> <?= $product->getName_product() ?></h2>
-                            <p class="p ">
-                                Precio: $ <?= $product->getPrice() ?>
-                            </p>
+                            <h2 class="h cart-list"> <?= $product['product']->getName_product() ?></h2>
+                            <div>
+                            <div class="p ">
+                                Precio: $ <?= $product['product']->getPrice() ?>
+                            
+                            </div>
+                            <div> Cantidad: <?= $product['quantity'] ?></div>
+                            </div>
 
-                            <a href="acciones/delete-from-cart.php?id=<?= $product->getId_product() ?>" class="col-lg-1 btn color-btn size-btn mt-1"><i class="bi bi-trash3-fill"></i> Borrar</a>
+                            <a href="acciones/delete-from-cart.php?id=<?= $product['product']->getId_product() ?>" class="col-lg-1 btn color-btn size-btn mt-1"><i class="bi bi-trash3-fill"></i> Borrar</a>
                         </div>
 
                     </li>

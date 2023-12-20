@@ -16,10 +16,14 @@ $usuario = (new Authentication())->getUser() ;
                     <li><?= $usuario->getName(); ?> </li>
                     <li><?= $usuario->getLastname(); ?> </li>
                     <li><?= $usuario->getEmail(); ?> </li>
-                    
                 </ul>
                 </div>
-            
+            </div>
+            <div class="col-lg-9">
+                <h2>Compras</h2>
+                <div>
+                    
+                </div>
             </div>
         </div>
 

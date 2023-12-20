@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\DB\DBConexion;
+use App\Models\Cart;
 use PDO;
 
 class Purchases{
@@ -17,18 +18,60 @@ class Purchases{
 
     public function createPurchase(array $data): void
     {
-        $db = DBConexion::getDB();
-        $query = "INSERT INTO purchases (user_fk, purchase_date, total_amount)
-        VALUES (:user_fk, :purchase_date, :total_amount)";
-        $stmt = $db -> prepare($query);
-        $stmt -> execute(
-            [
-            'user_fk'               => $data['user_fk'],
-            'purchase_date'         => $data['purchase_date'],
-            'total_amount'          => $data['total_amount'],
-            ]
-        );
+        try{ 
+            $db = DBConexion::getDB();
+            $db->beginTransaction();
+            $query = "INSERT INTO purchases (user_fk, purchase_date, total_amount)
+            VALUES (:user_fk, :purchase_date, :total_amount)";
+            $stmt = $db -> prepare($query);
+            $stmt -> execute(
+                [
+                'user_fk'               => $data['user_fk'],
+                'purchase_date'         => $data['purchase_date'],
+                'total_amount'          => $data['total_amount'],
+                ]
+            );
+    
+            // Obtener el ID de la compra recién insertada
+            $purchaseId = $db->lastInsertId();
+
+            // Obtener detalles del carrito
+            $cart = new Cart();
+            $cartContents = $cart->getCartContents();
+    
+            $this->createPurchaseDetail($purchaseId, $cartContents);
+            
+            $db->commit();
+
+            }catch(\Exception $e){
+                $db->rollBack();
+            throw $e;
+            };
+
+
     }
+
+    public function createPurchaseDetail(int $purchaseId, array $details): void
+    {
+        $db = DBConexion::getDB();
+
+        
+
+        foreach ($details as $detail) {
+            $query = "INSERT INTO purchase_details (purchases_fk, products_fk, quantity, price)
+                            VALUES (:purchases_fk, :products_fk, :quantity, :price)";
+            $stmt = $db->prepare($query);
+            $stmt->execute([
+                'purchases_fk' => $purchaseId,
+                'products_fk'  => $detail['product']->getId_product(),
+                'quantity'     => $detail['quantity'],
+                'price'        => $detail['product']->getPrice(),
+            ]);
+        }
+
+
+    }
+    
 
     /**
      * Get the value of purchase_id

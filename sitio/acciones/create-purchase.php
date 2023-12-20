@@ -3,6 +3,7 @@
 use App\Authentication\Authentication;
 use App\Models\Purchases;
 
+
 require_once __DIR__ . '/../bootstrap/init.php';
 
 $authentication = new Authentication();
@@ -31,7 +32,7 @@ try {
     $_SESSION['successMessage'] = "El se creo el purchase detail exitosamente.";
 
     echo  'se creo la compra';
-    // header("Location: ../index.php?section=store");
+    header("Location: ../index.php?section=home");
 exit;
 } catch (Exception $e) {
     $_SESSION['failMessage'] = "Ocurrió un error inesperado al intentar crear purchase detail, intenta más tarde";
