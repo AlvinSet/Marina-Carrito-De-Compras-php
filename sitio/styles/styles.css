@@ -290,5 +290,7 @@ ul {
         font-size: 2rem;
     }
     .total-price{font-size: 2rem;}
-
+    .title-section-profile{
+        font-size: 4rem;
+    }
 }

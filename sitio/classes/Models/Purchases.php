@@ -14,7 +14,29 @@ class Purchases{
     protected int $total_amount;
     
 
+    public function getUserPurchasesWithDetails(int $userID): array
+{
+    $db = DBConexion::getDB();
+    $query = "SELECT * FROM purchases WHERE user_fk = :userID";
+    $stmt = $db->prepare($query);
+    $stmt->execute(['userID' => $userID]);
 
+    $userPurchases = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($userPurchases as &$purchase) {
+        $purchase['details'] = $this->getPurchaseDetails($purchase['purchase_id']);
+    }
+    return $userPurchases;
+}
+public function getPurchaseDetails(int $purchaseId): array
+{
+    $db = DBConexion::getDB();
+    $query = "SELECT * FROM purchase_details WHERE purchases_fk = :purchaseId";
+    $stmt = $db->prepare($query);
+    $stmt->execute(['purchaseId' => $purchaseId]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
     public function createPurchase(array $data): void
     {
@@ -40,7 +62,7 @@ class Purchases{
             $cartContents = $cart->getCartContents();
     
             $this->createPurchaseDetail($purchaseId, $cartContents);
-            
+
             $db->commit();
 
             }catch(\Exception $e){

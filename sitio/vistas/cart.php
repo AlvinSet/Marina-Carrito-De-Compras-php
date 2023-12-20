@@ -10,40 +10,38 @@ $totalPrice = $cart->getTotalPrice();
 
 <main class="main-content">
     <section class="container">
-        <h1 class="mb-1 h title-section">Mi Carrito</h1>
+        <h1 class="mb-1 h title-section-profile">Mi Carrito</h1>
 
         <?php if (empty($cartContents)) : ?>
             <p>¡Tu carrito está vacío!</p>
         <?php else : ?>
-            <ul class="mt-5 ">
-                <?php foreach ($cartContents as $product) : ?>
 
-                    <li class="mt-2 row g-4">
-                        <div class=" d-flex justify-content-between align-items-baseline">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <?php foreach ($cartContents as $product) : ?>
+                            <tr>
+                                <td class="h"><?= $product['product']->getName_product() ?></td>
+                                <td class="p"><?= $product['product']->getPrice() ?></td>
+                                <td class="p"><?= $product['quantity'] ?></td>
+                                <td><a href="acciones/delete-from-cart.php?id=<?= $product['product']->getId_product() ?>" class="btn btn-danger btn-sm"><i class="bi bi-trash3-fill"></i> Borrar</a></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </thead>
+                </table>
+            </div>
+            <div class="d-flex justify-content-end">
+                <p class=" p total-price">Precio Total: $ <?= $totalPrice; ?>
+            </div>
 
-                            <h2 class="h cart-list"> <?= $product['product']->getName_product() ?></h2>
-                            <div>
-                            <div class="p ">
-                                Precio: $ <?= $product['product']->getPrice() ?>
-                            
-                            </div>
-                            <div> Cantidad: <?= $product['quantity'] ?></div>
-                            </div>
-
-                            <a href="acciones/delete-from-cart.php?id=<?= $product['product']->getId_product() ?>" class="col-lg-1 btn color-btn size-btn mt-1"><i class="bi bi-trash3-fill"></i> Borrar</a>
-                        </div>
-
-                    </li>
-
-                <?php endforeach; ?>
-                <li class="mt-4">
-                    <div class="d-flex justify-content-end">
-                        <p class=" p total-price">Precio Total: $ <?= $totalPrice; ?>
-                    </div>
-                    </p>
-                </li>
-
-            </ul>
             <div class="d-flex justify-content-end">
                 <form action="acciones/create-purchase.php" method="post">
                     <input type="hidden" name="total_amount" value="<?= $totalPrice; ?>">
@@ -51,7 +49,6 @@ $totalPrice = $cart->getTotalPrice();
                     <button type="submit" class="btn color-btn size-btn"> <i class="bi bi-bag-fill"></i> Comprar</button>
                 </form>
             </div>
-
 
         <?php endif; ?>
 
