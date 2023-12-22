@@ -29,7 +29,7 @@ try {
         
     ]);
 
-    $_SESSION['successMessage'] = "El se creo el purchase detail exitosamente.";
+    $_SESSION['successMessage'] = "La compra se realizó exitosamente.";
 
     echo  'se creo la compra';
     header("Location: ../index.php?section=home");
