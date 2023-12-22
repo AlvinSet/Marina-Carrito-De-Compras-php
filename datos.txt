@@ -12,3 +12,6 @@ E-mail: alvin.guaman@davinci.edu.ar
 Usuario Administrador
 admin@gmail.com
 admin123
+
+up1@mail.com
+usuario

@@ -28,29 +28,41 @@ $allUserPurchases = $purchases->getAllUsersWithPurchases();
                         <div class="card mb-3">
                             <div class="card-body">
                                 <h3 class="card-title h">Usuario: <?= $userPurchases['name'] . ' ' . $userPurchases['lastname']; ?></h3>
-                                <ul class="list-group list-group-flush">
-                                    <?php foreach ($userPurchases['purchases'] as $purchase) : ?>
-                                        <li class="list-group-item">
-                                            <h5>Id de Compra: <?= $purchase['purchase_id']; ?></h5>
-                                            <p>Fecha de compra: <?= $purchase['purchase_date'] ?></p>
-                                            <ul class="list-group list-group-flush">
-                                                <?php foreach ($purchases->getPurchaseDetails($purchase['purchase_id']) as $detail) : ?>
-                                                    <li class="list-group-item">
-                                                        <?php
-                                                        $product = new Product();
-                                                        $product = $product->byId($detail['products_fk']);
-                                                        ?>
-                                                        <span class="badge bg-secondary">
-                                                            <?= $product->getName_product(); ?>
-                                                        </span>
-                                                        <?= $product->getWeight(); ?>g <?= $detail['quantity'] ?> x <?= $detail['price'] ?>
-                                                    </li>
-                                                <?php endforeach; ?>
-                                            </ul>
-                                            <p>Saldo Total: <?= $purchase['total_amount'] ?></p>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
+                                    
+                                    <ul class="list-group list-group-flush">
+                                        <?php foreach ($userPurchases['purchases'] as $purchase) : ?>
+                                            <li class="list-group-item">
+                                                <?php if (!empty($purchase['purchase_id'])) : ?>
+                                                    <h4>Id de Compra: <?= $purchase['purchase_id']; ?></h4>
+                                                    <p>Fecha de compra: <?= $purchase['purchase_date'] ?></p>
+                                                    <?php
+                                                    $details = $purchases->getPurchaseDetails($purchase['purchase_id']);
+                                                    if (is_array($details) && count($details) > 0) :
+                                                    ?>
+                                                        <ul class="list-group list-group-flush">
+                                                            <?php foreach ($purchases->getPurchaseDetails($purchase['purchase_id']) as $detail) : ?>
+                                                                <li class="list-group-item">
+                                                                    <?php
+                                                                    $product = new Product();
+                                                                    $product = $product->byId($detail['products_fk']);
+                                                                    ?>
+                                                                    <span class="badge bg-secondary">
+                                                                        <?= $product->getName_product(); ?>
+                                                                    </span>
+                                                                    <?= $product->getWeight(); ?>g <?= $detail['quantity'] ?> x <?= $detail['price'] ?>
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                    <?php endif; ?>
+
+                                                    <p>Saldo Total: <?= $purchase['total_amount'] ?></p>
+                                                <?php else : ?>
+                                                    <p class="card-text">Este usuario no ha realizado compras.</p>
+                                                <?php endif; ?>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                            
                             </div>
                         </div>
                     <?php endforeach; ?>
